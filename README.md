@@ -33,7 +33,7 @@
 #### 第二步 创建一个类 ####
 
 　　这里类名字一般命名与attr中保持一致UCloading，当然这二者并没有什么直接联系。
-　　然后去布局文件中添加View,记得给出上面这些参数,app:mColor的app是可以自己改名字的，记得在XML文件声明就行了(xmlns:app="http://schemas.android.com/apk/res-auto",如果是eclipse的话后面的res-auto得换成你的包路径，具体怎么弄去网上查吧)
+　　然后去布局文件中添加View,记得给出上面这些参数,app:mColor的app是可以自己改名字的，记得在XML文件声明就行了xmlns:app="http://schemas.android.com/apk/res-auto",如果是eclipse的话后面的res-auto得换成你的包路径，具体怎么弄去网上查吧
 
 	<com.jianyuyouhun.library.view.UCloading
         android:id="@+id/loading"
@@ -161,3 +161,4 @@
 
 　　当然效果图不会少了。
 
+<img src="GIF.gif"/>
