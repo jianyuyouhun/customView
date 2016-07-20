@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="mTextTitle" format="string"/>
+    <attr name="mTextTitleSize" format="dimension"/>
+    <attr name="mTextContent" format="string"/>
+    <attr name="mTextContentSize" format="dimension"/>
+    <attr name="mColor" format="color"/>
+    <attr name="mBackgroundColor" format="color"/>
+    <attr name="mBorderWidth" format="dimension"/>
+    <attr name="mDuring" format="integer"/>
+    <declare-styleable name="UCloading">
+        <attr name="mColor" />
+        <attr name="mBackgroundColor" />
+        <attr name="mDuring" />
+    </declare-styleable>
+</resources>
