@@ -5,6 +5,7 @@
     <attr name="mTextContent" format="string"/>
     <attr name="mTextContentSize" format="dimension"/>
     <attr name="mColor" format="color"/>
+    <attr name="mTextColor" format="color"/>
     <attr name="mBackgroundColor" format="color" />
     <attr name="mBorderWidth" format="dimension" />
     <attr name="mDuring" format="integer"/>
@@ -20,5 +21,8 @@
     <declare-styleable name="TagView">
         <attr name="mCornerRadius"/>
         <attr name="mScale"/>
+        <attr name="mTextContentSize"/>
+        <attr name="mTextContent"/>
+        <attr name="mTextColor"/>
     </declare-styleable>
 </resources>
