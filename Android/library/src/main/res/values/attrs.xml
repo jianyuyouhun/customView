@@ -5,12 +5,20 @@
     <attr name="mTextContent" format="string"/>
     <attr name="mTextContentSize" format="dimension"/>
     <attr name="mColor" format="color"/>
-    <attr name="mBackgroundColor" format="color"/>
-    <attr name="mBorderWidth" format="dimension"/>
+    <attr name="mBackgroundColor" format="color" />
+    <attr name="mBorderWidth" format="dimension" />
     <attr name="mDuring" format="integer"/>
+    <attr name="mCornerRadius" format="dimension" />
+    <attr name="mScale" format="float" />
+
     <declare-styleable name="UCloading">
         <attr name="mColor" />
         <attr name="mBackgroundColor" />
         <attr name="mDuring" />
+    </declare-styleable>
+
+    <declare-styleable name="TagView">
+        <attr name="mCornerRadius"/>
+        <attr name="mScale"/>
     </declare-styleable>
 </resources>
