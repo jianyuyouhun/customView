@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.jianyuyouhun.library.R;
@@ -16,7 +15,7 @@ import com.jianyuyouhun.library.R;
 /**
  * Created by 王宇 on 2016/7/20.
  */
-public class UCloading extends View {
+public class UCLoadingView extends View {
     private Paint paint;//画笔
     private int mColor;//填充色
     private int mBackgroundColor;//背景色
@@ -32,25 +31,25 @@ public class UCloading extends View {
     private boolean flag = false;//切换标志
     private boolean handlerFlag = false;//第一次开启动画时给各个半径赋值
     private boolean autoStart = true;//当代码中修改了参数时就靠这个停止动画了，然后手动开启。
-    public UCloading(Context context){
+    public UCLoadingView(Context context){
         this(context, null);
     }
 
-    public UCloading(Context context, AttributeSet attrs){
+    public UCLoadingView(Context context, AttributeSet attrs){
         this(context, attrs, 0);
     }
 
-    public UCloading(Context context, AttributeSet attrs, int defStyleAttr) {
+    public UCLoadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.UCloading, defStyleAttr, 0);
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.UCLoadingView, defStyleAttr, 0);
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++){
             int attr = a.getIndex(i);
-            if (attr == R.styleable.UCloading_mColor) {
+            if (attr == R.styleable.UCLoadingView_mColor) {
                 mColor = a.getColor(attr, Color.BLUE);
-            }else if (attr == R.styleable.UCloading_mBackgroundColor){
+            }else if (attr == R.styleable.UCLoadingView_mBackgroundColor){
                 mBackgroundColor = a.getColor(attr, Color.GRAY);
-            }else if (attr == R.styleable.UCloading_mDuring){
+            }else if (attr == R.styleable.UCLoadingView_mDuring){
                 mDuring = a.getInt(attr, 300);
             }
         }

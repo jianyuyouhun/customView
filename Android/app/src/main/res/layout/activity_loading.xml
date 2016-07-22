@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.jianyuyouhun.myandroid.LoadingActivity">
-    <com.jianyuyouhun.library.view.UCloading
+    <com.jianyuyouhun.library.view.UCLoadingView
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:id="@+id/loading1"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/loading1"
         android:layout_centerHorizontal="true" />
-    <com.jianyuyouhun.library.view.UCloading
+    <com.jianyuyouhun.library.view.UCLoadingView
         android:layout_centerInParent="true"
         android:id="@+id/loading"
         app:mColor="#2d92da"

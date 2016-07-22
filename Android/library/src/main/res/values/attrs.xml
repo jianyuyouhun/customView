@@ -12,7 +12,7 @@
     <attr name="mCornerRadius" format="dimension" />
     <attr name="mScale" format="float" />
 
-    <declare-styleable name="UCloading">
+    <declare-styleable name="UCLoadingView">
         <attr name="mColor" />
         <attr name="mBackgroundColor" />
         <attr name="mDuring" />

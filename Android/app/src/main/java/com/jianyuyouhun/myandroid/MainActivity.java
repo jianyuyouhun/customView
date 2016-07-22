@@ -55,6 +55,12 @@ public class MainActivity extends BaseActivity {
                         break;
                     case "pieChart":
                         break;
+                    case "tagView":
+                        startActivity(new Intent(getApplicationContext(), TagActivity.class));
+                        break;
+                    case "testView":
+                        startActivity(new Intent(getApplicationContext(), TestActivity.class));
+                        break;
                 }
             }
         });
@@ -64,7 +70,9 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
+        list.add("testView");
         list.add("loadingView");
+        list.add("tagView");
         list.add("pieChart");
         adapter.notifyDataSetChanged();
     }

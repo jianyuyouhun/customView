@@ -19,7 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoadingActivity"></activity>
+        <activity android:name=".LoadingActivity" />
+        <activity
+            android:name=".TagActivity"
+            android:label="@string/title_activity_tag"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test">
+        </activity>
     </application>
 
 </manifest>

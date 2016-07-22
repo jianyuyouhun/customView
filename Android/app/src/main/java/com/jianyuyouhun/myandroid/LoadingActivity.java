@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.jianyuyouhun.library.view.UCloading;
+import com.jianyuyouhun.library.view.UCLoadingView;
 
 public class LoadingActivity extends AppCompatActivity {
     boolean flag = true;
@@ -15,9 +15,9 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        final UCloading loading = (UCloading) findViewById(R.id.loading);
+        final UCLoadingView loading = (UCLoadingView) findViewById(R.id.loading);
 
-        final UCloading loading1 = (UCloading) findViewById(R.id.loading1);
+        final UCLoadingView loading1 = (UCLoadingView) findViewById(R.id.loading1);
         loading1.setLoadColor(getResources().getColor(R.color.colorPrimaryDark));
         loading1.setLoadBackgroundColor(Color.GRAY);
         loading1.setDuring(500);
