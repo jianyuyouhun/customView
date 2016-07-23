@@ -1,121 +1,120 @@
 package com.jianyuyouhun.library;
 
-import android.annotation.TargetApi;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.RectF;
-import android.os.Build;
+import android.graphics.PathMeasure;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
-import android.view.View;
 
+import com.gcssloop.view.CustomView;
 import com.gcssloop.view.utils.CanvasAidUtils;
 
 /**
- * Created by 王宇 on 2016/7/20.
+ * Created by 王宇 on 2016/7/23.
  */
-public class TestView extends View{
-    private int mWidth;
-    private int mHeight;
-    private Paint mPaint;
-
-    private float progress = 0;
-    private float speed = 0;
-    private boolean flag = true;
+public class TestView extends CustomView{
+    private Paint paint;
+    private Paint paint2;
+    private int x0;
+    private int y0;
+    private float[] mCurrentPosition;
+    private PathMeasure measure;
+    private Path path;
+    private Path locus;
+    private boolean flag = false;
     public TestView(Context context) {
         this(context, null);
     }
-    public TestView(Context context, AttributeSet attrs){
+    public TestView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.mPaint = new Paint();
-        mPaint.setStrokeWidth(6);
-        mPaint.setAntiAlias(true);
-        mPaint.setStyle(Paint.Style.STROKE);
-        mPaint.setColor(Color.GRAY);
+        // 初始化画笔
+        initPaint();
+        initPath();
+    }
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    if (!flag){
+                        startAni();
+                        flag=true;
+                    }
+                    break;
+            }
+        }
+    };
+    public void initPaint(){
+        mDefaultTextPaint.setColor(Color.GRAY);
+        paint = new Paint();
+        paint.setColor(Color.GRAY);
+        paint.setStrokeWidth(6);
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.STROKE);
+        paint2 = new Paint();
+        paint2.setColor(Color.WHITE);
+        paint2.setStrokeWidth(6);
+        paint2.setAntiAlias(true);
+        paint2.setStyle(Paint.Style.STROKE);
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mWidth = w;
-        mHeight = h;
+    public void initPath(){
+        path = new Path();
+        locus = new Path();
+        mCurrentPosition = new float[2];
     }
 
-    @TargetApi(Build.VERSION_CODES.KITKAT)
+    public void startAni(){
+        ValueAnimator animator = ValueAnimator.ofFloat(0, measure.getLength());
+        animator.setDuration(12000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (Float) animation.getAnimatedValue();
+                // 获取当前点坐标封装到mCurrentPosition
+                measure.getPosTan(value, mCurrentPosition, null);
+                invalidate();
+            }
+        });
+        animator.start();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.translate(mWidth / 2, mHeight / 2);  // 移动坐标系到屏幕中心(宽高数据在onSizeChanged中获取)
+        // 获取View宽高与画笔并根据此绘制内容
 
-        progress+=speed;
+        x0 = mViewWidth/360;
+        y0 = mViewHeight/16;
 
-        if (speed>=64){
-            flag=false;
-        }else if (speed<=0){
-            flag=true;
-        }
-        if (flag){
-            speed+=0.3;
-        }else {
-            speed-=0.3;
-        }
-        int a;
+        canvas.translate(mViewWidth / 2, mViewHeight / 2);
+        canvas.scale(1,-1);
 
-        if (progress>=360){
-            progress=0;
-        }
-        canvas.rotate(progress);
         CanvasAidUtils.setLineColor(Color.RED);
-        CanvasAidUtils.setLineWidth(4);
         CanvasAidUtils.drawCoordinateSystem(canvas);
 
-        Path path_left = new Path();
-        Path path_left1 = new Path();
-        Path path_left2 = new Path();
-        Path path_left3 = new Path();
-        Path path_left4 = new Path();
+        int x;
+        int y;
 
-        path_left.addCircle(0, -100, 50, Path.Direction.CW);
-        path_left1.addCircle(0, 0, 200, Path.Direction.CW);
-        path_left2.addRect(0, -200, 200, 200, Path.Direction.CW);
-        path_left3.addCircle(0, -100, 100, Path.Direction.CW);
-        path_left4.addCircle(0, 100, 100, Path.Direction.CCW);
+        path.moveTo(0,0);
+        for (int i = 0; i < 160; i++){
+            x = i*x0;
+            y = (int) (Math.sin(0.1*i)*y0);
+            path.lineTo(x,y);
+        }
 
-        path_left1.op(path_left2, Path.Op.DIFFERENCE);
-        path_left1.op(path_left3, Path.Op.UNION);
-        path_left1.op(path_left4, Path.Op.DIFFERENCE);
-        path_left1.op(path_left, Path.Op.DIFFERENCE);
+        measure = new PathMeasure(path, false);
 
-        mPaint.setStyle(Paint.Style.FILL);
-        canvas.drawPath(path_left1, mPaint);
+        handler.sendEmptyMessage(1);
+        locus.lineTo(mCurrentPosition[0], mCurrentPosition[1]);
 
+        canvas.drawPath(locus, paint);
 
-        Path path_right = new Path();
-        Path path_right1 = new Path();
-        Path path_right2 = new Path();
-        Path path_right3 = new Path();
-        Path path_right4 = new Path();
-
-        path_right.addCircle(0, 100, 50, Path.Direction.CW);
-        path_right1.addCircle(0, 0, 200, Path.Direction.CW);
-        path_right2.addRect(0, -200, 200, -200, Path.Direction.CW);
-        path_right3.addCircle(0, 100, 100, Path.Direction.CW);
-        path_right4.addCircle(0, -100, 100, Path.Direction.CCW);
-
-        path_right1.op(path_right2, Path.Op.DIFFERENCE);
-        path_right1.op(path_right3, Path.Op.UNION);
-        path_right1.op(path_right4, Path.Op.DIFFERENCE);
-        path_right1.op(path_right, Path.Op.DIFFERENCE);
-
-        mPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawPath(path_right1, mPaint);
-
-        mPaint.setStyle(Paint.Style.FILL);
-        canvas.drawPath(path_right, mPaint);
-        CanvasAidUtils.setDrawAid(false);
-        invalidate();
     }
-
 }

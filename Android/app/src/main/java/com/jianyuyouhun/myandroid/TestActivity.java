@@ -14,8 +14,8 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        TestView view = new TestView(this);
-        SearchView view = new SearchView(this);
+        TestView view = new TestView(this);
+//        SearchView view = new SearchView(this);
         setContentView(view);
     }
 }
