@@ -21,12 +21,8 @@ import java.util.List;
 public class MainActivity extends BaseActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
-    List<String> list;
+    String[] titles={"loadingView","tagView","testView","taiji","searchView"};
     MyAdapter adapter;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public void bindView() {
@@ -44,22 +40,22 @@ public class MainActivity extends BaseActivity {
     @Override
     public void bindData() {
         super.initData();
-        list = new ArrayList<>();
-        adapter = new MyAdapter(this, list);
+        adapter = new MyAdapter(this, titles);
         adapter.setOnItemClickLitener(new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                switch (list.get(position)){
+                switch (titles[position]){
                     case "loadingView":
                         startActivity(new Intent(getApplicationContext(), LoadingActivity.class));
-                        break;
-                    case "pieChart":
                         break;
                     case "tagView":
                         startActivity(new Intent(getApplicationContext(), TagActivity.class));
                         break;
-                    case "testView":
-                        startActivity(new Intent(getApplicationContext(), TestActivity.class));
+                    default:
+                        Intent intent = new Intent();
+                        intent.setClass(getApplicationContext(), TestActivity.class);
+                        intent.putExtra("type", titles[position]);
+                        startActivity(intent);
                         break;
                 }
             }
@@ -70,18 +66,14 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initData() {
         super.initData();
-        list.add("testView");
-        list.add("loadingView");
-        list.add("tagView");
-        list.add("pieChart");
         adapter.notifyDataSetChanged();
     }
 
     private static class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         Context context;
-        List<String> list;
-        public MyAdapter(Context context, List<String> list){
+        String[] list;
+        public MyAdapter(Context context, String[] list){
             this.context = context;
             this.list = list;
         }
@@ -104,7 +96,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(final MyAdapter.MyViewHolder holder, int position) {
-            holder.textView.setText(list.get(position));
+            holder.textView.setText(list[position]);
             if (onItemClickListener!=null){
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -118,7 +110,7 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public int getItemCount() {
-            return list.size();
+            return list.length;
         }
 
         public class MyViewHolder extends RecyclerView.ViewHolder{
