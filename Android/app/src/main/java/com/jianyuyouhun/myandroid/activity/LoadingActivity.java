@@ -1,4 +1,4 @@
-package com.jianyuyouhun.myandroid;
+package com.jianyuyouhun.myandroid.activity;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.jianyuyouhun.library.view.UCLoadingView;
+import com.jianyuyouhun.myandroid.R;
 
 public class LoadingActivity extends AppCompatActivity {
     boolean flag = true;

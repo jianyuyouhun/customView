@@ -1,4 +1,4 @@
-package com.jianyuyouhun.myandroid;
+package com.jianyuyouhun.myandroid.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

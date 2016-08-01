@@ -10,6 +10,7 @@ import android.graphics.PathMeasure;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.gcssloop.view.CustomView;
 import com.gcssloop.view.utils.CanvasAidUtils;
@@ -73,6 +74,7 @@ public class TestView extends CustomView{
     public void startAni(){
         ValueAnimator animator = ValueAnimator.ofFloat(0, measure.getLength());
         animator.setDuration(12000);
+        animator.setInterpolator(new AccelerateDecelerateInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
