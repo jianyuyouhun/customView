@@ -18,7 +18,7 @@ import com.jianyuyouhun.myandroid.tools.DividerItemDecoration;
 public class MainActivity extends BaseActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
-    String[] titles={"loadingView","tagView","testView","taiji","searchView"};
+    String[] titles={"loadingView","tagView","testView","taiji","searchView", "bezierView"};
     MyAdapter adapter;
 
     @Override
