@@ -12,6 +12,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -73,11 +74,20 @@ public class BezierView extends View {
         maxLength = (radius*2+ITEM_DIVIDER)*ITEM_COUNT;
     }
 
+    /**
+     * 圆
+     */
     private class Circle {
         float[] center;
         float radius;
     }
 
+    /**
+     * 获取即时方向
+     * @param radians
+     * @param length
+     * @return
+     */
     private float[] getVector(float radians, float length) {
         float x = (float) (Math.cos(radians) * length);
         float y = (float) (Math.sin(radians) * length);
@@ -86,6 +96,9 @@ public class BezierView extends View {
         };
     }
 
+    /**
+     * 位移动画
+     */
     private class MoveAnimation extends Animation{
         @Override
         protected void applyTransformation(float interpolatedTime, Transformation t) {
@@ -247,7 +260,7 @@ public class BezierView extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+//        super.onDraw(canvas);
         canvas.translate(mWidth / 6, mHeight / 2);
 
         circle = circlePaths.get(0);
@@ -272,6 +285,7 @@ public class BezierView extends View {
     }
 
     private int current_item_pos = 0;
+
     public void setSelectedItemPosition(int pos){
         if ((pos+1)>circlePaths.size()){
             current_item_pos = circlePaths.size()-1;

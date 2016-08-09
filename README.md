@@ -40,3 +40,10 @@
 　　[MetaballLoading链接](https://github.com/dodola/MetaballLoading)
 
 　　<img src="img/GIF_bezier.gif"/>
+
+## 7、QQ消息气泡拖拽实现 ##
+
+　　实现拖拽拉扯效果，弹性动画未完成
+
+　　<img src="img/GIF_testBezier.gif"/>
+
