@@ -36,23 +36,15 @@ public class LoadingActivity extends AppCompatActivity {
                     loading1.startLoading();
                     button.setText("stop");
                     flag = false;
-                    fab.show();
+                    fab.hide();
                 }else {
                     loading1.stopLoading();
                     button.setText("start");
                     flag = true;
-                    fab.hide();
+                    fab.show();
                 }
             }
         });
 
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Snackbar.make(v, "。。。", Snackbar.LENGTH_LONG);
-            }
-        });
     }
 }
