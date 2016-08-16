@@ -56,9 +56,9 @@ public class TestActivity extends AppCompatActivity {
     public void showTestBezier(){
         TestBezierView view = new TestBezierView(this);
         view.setCurvature(0.7f);
-        view.setRadius(70f, 0.5f);
-        view.setMaxDistanceMult(10);
-        view.setPaintMode(0);
+        view.setRadius(40f, 0.5f);
+        view.setMaxDistanceMult(6);
+        view.setPaintMode(1);
         setContentView(view);
     }
 }
