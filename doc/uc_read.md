@@ -162,3 +162,5 @@
 　　当然效果图不会少了。
 
 <img src="../img/GIF_uc.gif"/>
+
+　　有兴趣去看下我的[个人部落](https://jianyuyouhun.com)吧
