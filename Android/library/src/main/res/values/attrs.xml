@@ -25,4 +25,11 @@
         <attr name="mTextContent"/>
         <attr name="mTextColor"/>
     </declare-styleable>
+    <declare-styleable name="SwitchButton">
+        <attr name="mColor"/>
+        <attr name="mPaintColor" format="color"/>
+        <attr name="mShadow" format="dimension"/>
+        <attr name="hasShadow" format="boolean"/>
+        <attr name="mBorderWidth"/>
+    </declare-styleable>
 </resources>

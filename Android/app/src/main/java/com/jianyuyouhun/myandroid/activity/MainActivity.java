@@ -18,7 +18,7 @@ import com.jianyuyouhun.myandroid.tools.DividerItemDecoration;
 public class MainActivity extends BaseActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
-    String[] titles={"loadingView","tagView","testView","taiji","searchView", "bezierView", "testBezier"};
+    String[] titles={"switchBtn","loadingView","tagView","testView","taiji","searchView", "bezierView", "testBezier"};
     MyAdapter adapter;
 
     @Override
@@ -42,6 +42,9 @@ public class MainActivity extends BaseActivity {
             @Override
             public void onItemClick(View view, int position) {
                 switch (titles[position]){
+                    case "switchBtn":
+                        startActivity(new Intent(getApplicationContext(), SwitchButtonUI.class));
+                        break;
                     case "loadingView":
                         startActivity(new Intent(getApplicationContext(), LoadingActivity.class));
                         break;
